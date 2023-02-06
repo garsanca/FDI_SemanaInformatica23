@@ -50,15 +50,32 @@ int main() {
 }
 ```
 
+* Para compilar los código existe un fichero [Makefile](helloWorld/Makefile) que invocando **make** en consola genera el ejecutable **exec**
+
+```bash
+user@host:~/ $ make
+dpcpp -c -o main.o main.cpp -I.
+dpcpp -o exec main.o -I.  
+user@host:~/ $ ls
+exec  main.cpp  main.o  Makefile
+
+user@host:~/ $ ./exec
+
+Running on Intel(R) UHD Graphics 620 [0x5917]
+Hello, World!
+```
+### ToDo
+* Se recomienda experimentar con el cambio de **selector** para seleccionar CPU/GPU...
+
 ## Memoria Buffer & Accessors
-* En este [ejemplo](mem_buffersAccesors/main.cpp) vamos a ilustrar el uso de **buffers** y **accesors**
+* En este [ejemplo](mem_buffersAccesors/main.cpp) vamos a ilustrar el uso de memoria entre el host y el device con **buffers** y **accesors**
 
 ![Imagen](figures/buffer-hostmemory-accessor-cg.png)
 
 
-* Ámbito de **buffers** y **accessors**
-    * Creación y tiempo de vida 
-    * ¡¡¡ **Problema de sincronización** !!!
+* Vamos a ilustrar el ámbito de uso de los **buffers** y **accessors**
+    1. Creación y tiempo de vida 
+    2. ¡¡¡ **Problema de sincronización** !!!
 
 ``` c
 sycl::queue Q(sycl::gpu_selector{});
@@ -90,8 +107,8 @@ Q.submit([&](handler &h) {
 for(int i=0; i<N; i++)
 	std::cout << "a[" << i << "] = " << a[i] << std::endl;
 ```
-
-* Problema de sincronización: ámbito y tiempo de vida del *accesors*
+### Problema sincronización
+* El ámbito y tiempo de vida del *accesors* conlleva que no se actualicen los valores del array **a** cuando se imprime por pantalla con el comando ```std::cout << "a[" << i << "] = " << a[i] << std::endl;```
 
 ```bash
 user@host:~/ $ ./exec
@@ -108,9 +125,10 @@ a[8] = 8
 a[9] = 9
 ```
 
-* Uso de *host_accessor*
-    * *Buffer* toma posesión de los datos almacenados en vector
-    * Crear un **host_accessor** conlleva una llamada de bloqueo y solo será accesible cuando los kernels DPC++ de la cola hayan completado el acceso al *buffer*
+
+* Una posible solución es el uso del **host_accessor**
+    1. *Buffer* toma posesión de los datos almacenados en vector
+    2. Crear un **host_accessor** conlleva una llamada de bloqueo y solo será accesible cuando los kernels DPC++ de la cola hayan completado el acceso al *buffer*
 
 ```c
 
@@ -121,6 +139,7 @@ for(int i=0; i<N; i++)
 	std::cout << "a[" << i << "] = " << a_[i] << std::endl
 ```
 
+* La ejecución de nuevo tras la compilación
 
 ```bash
 user@host:~/ $ ./exec
@@ -238,7 +257,7 @@ free(c, Q);
 * El [código]()  de matrices $C_{NM}=A_{NK}*B_{KM}$
     * Para este ejemplo por sencillez $N=M=K=n$
 
-### Propuesta
+### ToDo
 * **Naive**: Ejemplo clásico de paralelismo 2D
 * **Hierarchy**: propuesta de expresión de paralelismo jerarquico ```parallel_for_work_group``` y ```parallel_for_work_item```
     * Rutina ```matrix_mult_hierarchy```
@@ -254,5 +273,23 @@ free(c, Q);
 
 
 * Para ello se utiliza el filtro de mediana, en una vecindad de 3x3
+    * Es decir que dado un pixel en la posición de la imagen (i,j), su valor será ```im[i][j]```
+    1. Se guardan los vecina del pixel (i,j) de forma temporal
+    2. Se ordenan los valores de los pixel de la vecindad 3x3: **sort**
+    3. Para obtener el valor de la mitad de la ordenación
+         * Si no se supera un umbral el pixel de salida es equivalente al de la entrada
+         * En caso contrario el pixel resultante sería el valor de la mediana
 
 ![Image](figures/salt_pepper2.png)
+
+* Compilación: por medio del [*make*](image_salt_pepper/Makefile)
+* Ejecución: **host** y **device**, con el último flag de línea de comandos
+     * host: ```./main LennaSALTPEPPER.bmp output.bmp h```
+     * device: ```./main LennaSALTPEPPER.bmp output.bmp g```
+
+### ToDo
+
+* El kernel a desarrollar está en el fichero [**kernels.cpp**](image_salt_pepper/kernels.cpp)
+     * Posee como entrada la cola *Q*, imágen de entrada en *im*, valor umbral *thredshold*, alto y ancho de la imagen *height, width*
+     * La imagen de salida se escribe en **image_out**
+     * La selección de la cola se realiza en el fichero [**main.cpp**](image_salt_pepper/main.cpp) y la memoria para la imagen de entrada y salida se reserva mediante el mecanismo de USM

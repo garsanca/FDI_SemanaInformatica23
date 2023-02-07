@@ -1,13 +1,13 @@
 # Códigos del Taller
 ## Introducción
 * En este repositorio se encuentran los códigos propuestos en el taller [Programación paralela con OneAPI](https://informatica.ucm.es/ix-semana-de-la-informatica-2023) de la IX Semana de la Informática
-* Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](# Setup-del-lab)
+* Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](#setup-del-lab)
 * Los códigos que vamos a trabajar son:
-    * [helloWorld](##helloWorld): ilustra la selección de dispositvos
-    * [Memoria Buffer & Accessors](##Memoria-Buffer-&-Accessors): uso de buffers y accesors
-    * [Memoria USM](##Memoria-USM): uso de USM
-    * [Suma de vectores](##Suma-de-vectores): suma de vectores
-    * [Tratamiento de imágenes](##Tratamiento-de-imágenes): reducción de ruido tipo sal & pimienta
+    * [helloWorld](##helloworld): ilustra la selección de dispositivos
+    * [Memoria Buffer & Accessors](##memoria-buffer-&-accessors): uso de buffers y accesors
+    * [Memoria USM](##memoria-usm): uso de USM
+    * [Suma de vectores](##suma-de-vectores): suma de vectores
+    * [Tratamiento de imágenes](##tratamiento-de-imágenes): reducción de ruido tipo sal & pimienta
 
 
 # Setup del lab
@@ -15,7 +15,7 @@
 ## Transparencias
 * Todo el material está disponible en el repositorio [github](https://github.com/garsanca/FDI_SemanaInformatica23)
     * Puede descargarse fácilmente clonando el repositorio ejecutando en un terminal el comando ```git clone https://github.com/garsanca/FDI_SemanaInformatica23```
-* Además las transperencias del taller están disponible en el [directorio "transparencias"](transparencias/) 
+* Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/) 
 
 ## Cuenta en DevCloud
 * El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) es un espacio de desarrollo **gratuito** para que la comunidad de desarrolladores puedan programar aplicaciones
@@ -275,7 +275,6 @@ for(int i=0; i<N; i++)
 
 
 ```bash
-\begin{verbatim}
 user@host:~/ $ ./exec
 Running on Intel(R) Graphics [0x5917]
 a[0] = 0

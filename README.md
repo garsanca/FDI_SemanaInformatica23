@@ -1,14 +1,14 @@
 # Códigos del Taller
-## Introducción
+## Contenidos
 * En este repositorio se encuentran los códigos propuestos en el taller [Programación paralela con OneAPI](https://informatica.ucm.es/ix-semana-de-la-informatica-2023) de la IX Semana de la Informática
 * Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](#setup-del-lab)
-* Los códigos que vamos a trabajar son:
-    * [helloWorld](##helloworld): ilustra la selección de dispositivos
-    * [Memoria Buffer & Accessors](##memoria-buffer-&-accessors): uso de buffers y accesors
-    * [Memoria USM](##memoria-usm): uso de USM
-    * [Suma de vectores](##suma-de-vectores): suma de vectores
-    * [Tratamiento de imágenes](##tratamiento-de-imágenes): reducción de ruido tipo sal & pimienta
-
+* Los códigos que vamos a trabajar están disponibles en la [sección](#ejemplos):
+    * helloWorld: ilustra la selección de dispositivos
+    * Memoria Buffer & Accessors: uso de buffers y accesors
+    * Memoria USM: uso de USM
+    * Suma de vectores: suma de vectores
+    * Tratamiento de imágenes: reducción de ruido tipo sal & pimienta
+* La descripción del [reto del concurso](#reto-concurso) se puede consultar a final de este fichero
 
 # Setup del lab
 
@@ -95,7 +95,7 @@ echo
 
 * Para más información relacionada con el lanzamiento de trabajos en el DevCloud se puede consultar la [documentación](https://devcloud.intel.com/oneapi/documentation/job-submission/)
 
-# Ejemplo de código
+# Ejemplos
 
 ## helloWorld
 1. En este [ejemplo](helloWorld/main.cpp) vamos a ver como se selecciona un dispositivo
@@ -393,7 +393,7 @@ free(c, Q);
      * La selección de la cola se realiza en el fichero [**main.cpp**](image_salt_pepper/main.cpp) y la memoria para la imagen de entrada y salida se reserva mediante el mecanismo de USM
 
 
-# Reto-Challenge
+# Reto-Concurso
 ## Esteganografía
 * Técnica para ocultar información o mensaje secreto
 * Las [técnicas más comunes](https://es.wikipedia.org/wiki/Esteganograf%C3%ADa) son en documentos, imágenes...

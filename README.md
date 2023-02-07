@@ -391,3 +391,84 @@ free(c, Q);
      * Posee como entrada la cola *Q*, imágen de entrada en *im*, valor umbral *thredshold*, alto y ancho de la imagen *height, width*
      * La imagen de salida se escribe en **image_out**
      * La selección de la cola se realiza en el fichero [**main.cpp**](image_salt_pepper/main.cpp) y la memoria para la imagen de entrada y salida se reserva mediante el mecanismo de USM
+
+
+# Reto-Challenge
+## Esteganografía
+* Técnica para ocultar información o mensaje secreto
+* Las [técnicas más comunes](https://es.wikipedia.org/wiki/Esteganograf%C3%ADa) son en documentos, imágenes...
+
+![Imagen](figures/steganography-example.png)
+
+
+* El código correspondiente al paper ["Portable real-time DCT-based steganography using OpenCL"](https://link.springer.com/article/10.1007/s11554-016-0616-9).
+    * Disposible en la carpeta [**esteganografia**](esteganografia/)
+* El algoritmo contiene  las etapas:
+    * Conversión RGB a YCrCb
+    * Aplicación de transformada DCT8x8 al canal Y
+    * Inserción de mensaje oculto 
+    * Transformación inversa iDCT8x8 del canal Y
+    * Cambio Y'CrCb a RGB y almacenamiento de nueva imágen
+
+![Imagen](figures/steganography_dct2d.png)
+
+### Compilación y uso
+* Compilación con el comando ```make```
+* Paramétros de ejecución: "imagen_entrada.png logo.png image_salida.png"
+    * Genera imágen de salida: "image_salida.png"
+    * Mensaje recuperado: "logo_out.png"
+
+
+```bash
+user@host:~/ $ make
+icx -O2 -std=c99 -fiopenmp   -c -o main.o main.c
+icx -O2 -std=c99 -fiopenmp   -c -o steano_routines.o steano_routines.c
+icx -O2 -std=c99 -fiopenmp   -c -o io_routines.o io_routines.c
+icx -O2 -std=c99 -fiopenmp main.o steano_routines.o io_routines.o -o steano -lpng -lm
+
+user@host:~/ $ ./steano imgs/lenna.png imgs/logo_topsecret.png image.png
+Encoding time=0.019842 sec.
+Decoding time=0.010709 sec.
+
+```
+
+* El directorio [imgs](esteganografia/imgs/) contiene varias imágenes de prueba y algunos logos (mensajes a ocultar)
+
+### Explicación breve
+* Dos funciones principales de la apliación son: ```encoder``` y ```decoder``` que corresponden a las funciones que "ocultan" en mensaje secreto y lo "extraen"
+    * Ambas funciones hacen referencia a las etapas del algoritmo descritas anteriormente
+
+```c
+int main(int argc, char **argv)
+{
+    ...
+	// Encode the msg into image
+	encoder(file_in, file_out, msg, msg_len);
+
+	// Extract msg from image
+	decoder(file_out, msg_decoded, msg_len);
+    ...
+}
+
+void encoder(...)
+{
+    ...
+	get_dct8x8_params(mcosine, alpha);
+
+	im2imRGB(im, w, h, &imRGB);
+	rgb2ycbcr(&imRGB, &imYCrCb);
+	dct8x8_2d(imYCrCb.Y, Ydct, imYCrCb.w, imYCrCb.h, mcosine, alpha);
+
+	// Insert Message
+	insert_msg(Ydct, imYCrCb.w, imYCrCb.h, msg, msg_len);
+
+	idct8x8_2d(Ydct, imYCrCb.Y, imYCrCb.w, imYCrCb.h, mcosine, alpha);
+   	ycbcr2rgb(&imYCrCb, &imRGB);
+	imRGB2im(&imRGB, im_out, &w, &h);
+
+    ...
+}
+```
+
+### ToDo
+* El **concurso de programación** consiste en desarrollar la solución más eficiente (código desarrollado más rápido) que implemente las funciones de ```encoder``` y ```decoder``` con el modelo de programación de SYCL

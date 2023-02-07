@@ -414,11 +414,13 @@ free(c, Q);
 
 ### Compilación y uso
 * Compilación con el comando ```make```
-* Paramétros de ejecución: "imagen_entrada.png logo.png image_salida.png"
-    * Genera imágen de salida: "image_salida.png"
-    * Mensaje recuperado: "logo_out.png"
+* Paramétros de ejecución: *imagen_entrada.png logo.png image_salida.png*
+    1. Imagen de entrada donde se va a ocultar el mensaje descrita como *imagen_entrada.png*
+    2. Imagen con el logo o mensaje a ocultar descritar como *logo.png*
+    3. Imagen de salida correspondiente a la imagen de entrada con el mensaje oculto descrita como *image_salida.png*
+    * Además genera un fichero *logo_out.png* que corresponde al mensaje "descifrado" o recuperado
 
-
+* Las siguiente líneas muestran el proceso de compilación y uso de la aplicación:
 ```bash
 user@host:~/ $ make
 icx -O2 -std=c99 -fiopenmp   -c -o main.o main.c
@@ -432,11 +434,12 @@ Decoding time=0.010709 sec.
 
 ```
 
-* El directorio [imgs](esteganografia/imgs/) contiene varias imágenes de prueba y algunos logos (mensajes a ocultar)
+* En el directorio [imgs](esteganografia/imgs/) existen varias imágenes de prueba y algunos logos de prueba (mensajes a ocultar) para testear la aplicación
 
-### Explicación breve
-* Dos funciones principales de la apliación son: ```encoder``` y ```decoder``` que corresponden a las funciones que "ocultan" en mensaje secreto y lo "extraen"
-    * Ambas funciones hacen referencia a las etapas del algoritmo descritas anteriormente
+### Explicación breve del código
+* El código principal ```main``` invoca a ```encoder``` y ```encoder```
+* Las dos funciones principales correspondientes a: ```encoder``` ("ocultación" del mensaje secreto) y ```decoder``` que lo "extrae" 
+    * Ambas funciones hacen referencia a las etapas del algoritmo descritas en la figura anterior
 
 ```c
 int main(int argc, char **argv)
@@ -471,4 +474,4 @@ void encoder(...)
 ```
 
 ### ToDo
-* El **concurso de programación** consiste en desarrollar la solución más eficiente (código desarrollado más rápido) que implemente las funciones de ```encoder``` y ```decoder``` con el modelo de programación de SYCL
+* El **concurso de programación** consiste en desarrollar la **codificación más eficiente** (código desarrollado más rápido) que implemente las funciones de ```encoder``` y ```decoder``` con el modelo de programación de SYCL

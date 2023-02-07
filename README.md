@@ -1,13 +1,13 @@
 # Códigos del Taller
 ## Introducción
 * En este repositorio se encuentran los códigos propuestos en el taller [Programación paralela con OneAPI](https://informatica.ucm.es/ix-semana-de-la-informatica-2023) de la IX Semana de la Informática
-* Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](# Setup del lab)
+* Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](# Setup-del-lab)
 * Los códigos que vamos a trabajar son:
-    * [helloWorld](## helloWorld): ilustra la selección de dispositvos
-    * [Memoria Buffer & Accessors](## Memoria Buffer & Accessors): uso de buffers y accesors
-    * [Memoria USM](## Memoria USM): uso de USM
-    * [Suma de vectores](## Suma de vectores): suma de vectores
-    * [Tratamiento de imágenes](## Tratamiento de imágenes): reducción de ruido tipo sal & pimienta
+    * [helloWorld](##helloWorld): ilustra la selección de dispositvos
+    * [Memoria Buffer & Accessors](##Memoria-Buffer-&-Accessors): uso de buffers y accesors
+    * [Memoria USM](##Memoria-USM): uso de USM
+    * [Suma de vectores](##Suma-de-vectores): suma de vectores
+    * [Tratamiento de imágenes](##Tratamiento-de-imágenes): reducción de ruido tipo sal & pimienta
 
 
 # Setup del lab
@@ -15,7 +15,7 @@
 ## Transparencias
 * Todo el material está disponible en el repositorio [github](https://github.com/garsanca/FDI_SemanaInformatica23)
     * Puede descargarse fácilmente clonando el repositorio ejecutando en un terminal el comando ```git clone https://github.com/garsanca/FDI_SemanaInformatica23```
-* Además las transperencias del taller están disponible en el [directorio](transparencias) "transparencias"
+* Además las transperencias del taller están disponible en el [directorio "transparencias"](transparencias/) 
 
 ## Cuenta en DevCloud
 * El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) es un espacio de desarrollo **gratuito** para que la comunidad de desarrolladores puedan programar aplicaciones
@@ -32,24 +32,24 @@
     * **Importante** usar correo de UCM porque tiene una duración de uso mayor
     * Se recibirá un correo electrónico con instrucciones de uso
 
-[!Imagen](figures/devcloud_enroll.png)
+![Imagen](figures/devcloud_enroll.png)
 
 ## Conexión a DevCloud
 * Existen varios mecanismos de [conexión al Intel DevCloud](https://devcloud.intel.com/oneapi/documentation/connect-with-ssh-linux-macos/)
 
-[!Imagen](figures/devcloud_connect.png)
+![Imagen](figures/devcloud_connect.png)
 
 * La más sencilla es abrir un cuaderno de Jupyter
     1. Una vez logeado en la web del [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) en la opción **Sign In** (esquina superior derecha)
     2. Ir a la opción **"Get Started"** en la banda superior azul
     3. Clicar sobre **"Launch JupyterLab"** en la parte inferior izquierda o en el [atajo](https://jupyter.oneapi.devcloud.intel.com/hub/login?next=/lab/tree/Welcome.ipynb?reset)
 
-[!Imagen](figures/devcloud-launch_jupyperlab.png)
+![Imagen](figures/devcloud-launch_jupyperlab.png)
 
 ## Entorno Jupyter
 * El [Intel® DevCloud for oneAPI] contiene un entorno JupyterLab
 
-[!Imagen](figures/devcloud-jupyterlab.png)
+![Imagen](figures/devcloud-jupyterlab.png)
 
 * En la parte de la izquierda tiene un navegador de ficheros del usuario
     * Como funcionalidad útil, se pueden arrastrar fichero del equipo del *host* y automáticamente se llevan al DevCloud sin necesidad de hacer un sftp

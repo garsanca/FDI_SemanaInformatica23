@@ -2,7 +2,7 @@
 ## Contenidos
 * En este repositorio se encuentran los códigos propuestos en el taller [Programación paralela con OneAPI](https://informatica.ucm.es/ix-semana-de-la-informatica-2023) de la IX Semana de la Informática
 * Para poner a punto el taller se recomienda seguir los pasos de la sección [Setup del lab](#setup-del-lab)
-* Los códigos que vamos a trabajar están disponibles en la [sección](#ejemplos):
+* Los códigos que vamos a trabajar están disponibles en la [sección "Ejemplos"](#ejemplos), resumidamente trabajan algunos de los aspectos mostrados en la parte teórica:
     * helloWorld: ilustra la selección de dispositivos
     * Memoria Buffer & Accessors: uso de buffers y accesors
     * Memoria USM: uso de USM
@@ -475,3 +475,6 @@ void encoder(...)
 
 ### ToDo
 * El **concurso de programación** consiste en desarrollar la **codificación más eficiente** (código desarrollado más rápido) que implemente las funciones de ```encoder``` y ```decoder``` con el modelo de programación de SYCL
+
+### Entrega
+* Los código desarrollados serán entragado en una tarea del [seminario ""]() disponible en el Campus Virtual

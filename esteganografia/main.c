@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "steano_routines.h"
+#include "stegano_routines.h"
 #include "io_routines.h"
 
 int main(int argc, char **argv)
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	encoder(file_in, file_out, msg, msg_len);
 
 	// Extract msg from image
-	msg_decoded = malloc(msg_len);
+	msg_decoded = (char*)malloc(msg_len);
 	decoder(file_out, msg_decoded, msg_len);
 	msg2logo("logo_out.png", msg_decoded, msg_len);
 

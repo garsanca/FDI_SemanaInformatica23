@@ -5,7 +5,7 @@
 #include <omp.h>
 
 #include "io_routines.h"
-#include "steano_routines.h"
+#include "stegano_routines.h"
 
 # define M_PI           3.14159265358979323846  /* pi */
 
@@ -263,19 +263,19 @@ void encoder(char *file_in, char *file_out, char *msg, int msg_len)
 	uint8_t *im = (uint8_t*)loadPNG(file_in, &w, &h);
     
 	// Create imRGB & imYCrCb
-	uint8_t *im_out = malloc(3*w*h*sizeof(uint8_t));
+	uint8_t *im_out = (uint8_t*)malloc(3*w*h*sizeof(uint8_t));
 	t_sRGB imRGB;
-	imRGB.R = malloc(w*h*sizeof(float));
-	imRGB.G = malloc(w*h*sizeof(float));
-	imRGB.B = malloc(w*h*sizeof(float));
+	imRGB.R = (float*)malloc(w*h*sizeof(float));
+	imRGB.G = (float*)malloc(w*h*sizeof(float));
+	imRGB.B = (float*)malloc(w*h*sizeof(float));
 	t_sYCrCb imYCrCb;
-	imYCrCb.Y  = malloc(w*h*sizeof(float));
-	imYCrCb.Cr = malloc(w*h*sizeof(float));
-	imYCrCb.Cb = malloc(w*h*sizeof(float));
-	float *Ydct= malloc(w*h*sizeof(float));
+	imYCrCb.Y  = (float*)malloc(w*h*sizeof(float));
+	imYCrCb.Cr = (float*)malloc(w*h*sizeof(float));
+	imYCrCb.Cb = (float*)malloc(w*h*sizeof(float));
+	float *Ydct= (float*)malloc(w*h*sizeof(float));
 
-	float *mcosine = malloc(8*8*sizeof(float));
-	float *alpha = malloc(8*sizeof(float));
+	float *mcosine = (float*)malloc(8*8*sizeof(float));
+	float *alpha = (float*)malloc(8*sizeof(float));
 	get_dct8x8_params(mcosine, alpha);
 
 	double start = omp_get_wtime();
@@ -311,19 +311,19 @@ void decoder(char *file_in, char *msg_decoded, int msg_len)
 	uint8_t *im = (uint8_t*)loadPNG(file_in, &w, &h);
     
 	// Create imRGB & imYCrCb
-	uint8_t *im_out = malloc(3*w*h*sizeof(uint8_t));
+	uint8_t *im_out = (uint8_t*)malloc(3*w*h*sizeof(uint8_t));
 	t_sRGB imRGB;
-	imRGB.R = malloc(w*h*sizeof(float));
-	imRGB.G = malloc(w*h*sizeof(float));
-	imRGB.B = malloc(w*h*sizeof(float));
+	imRGB.R = (float*)malloc(w*h*sizeof(float));
+	imRGB.G = (float*)malloc(w*h*sizeof(float));
+	imRGB.B = (float*)malloc(w*h*sizeof(float));
 	t_sYCrCb imYCrCb;
-	imYCrCb.Y  = malloc(w*h*sizeof(float));
-	imYCrCb.Cr = malloc(w*h*sizeof(float));
-	imYCrCb.Cb = malloc(w*h*sizeof(float));
-	float *Ydct= malloc(w*h*sizeof(float));
+	imYCrCb.Y  = (float*)malloc(w*h*sizeof(float));
+	imYCrCb.Cr = (float*)malloc(w*h*sizeof(float));
+	imYCrCb.Cb = (float*)malloc(w*h*sizeof(float));
+	float *Ydct= (float*)malloc(w*h*sizeof(float));
 
-	float *mcosine = malloc(8*8*sizeof(float));
-	float *alpha = malloc(8*sizeof(float));
+	float *mcosine = (float*)malloc(8*8*sizeof(float));
+	float *alpha = (float*)malloc(8*sizeof(float));
 	get_dct8x8_params(mcosine, alpha);
 
 	double start = omp_get_wtime();

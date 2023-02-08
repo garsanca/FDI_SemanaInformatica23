@@ -1,6 +1,6 @@
 CXX=dpcpp
-CXXFLAGS=-I. -g
-LIBS=
+CXXFLAGS=-I.
+LIBS=-L/usr/lib/gcc/x86_64-linux-gnu/11
 
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CXXFLAGS)

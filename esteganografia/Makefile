@@ -1,15 +1,15 @@
 CC=icx
-CFLAGS=-O2 -std=c99 -fiopenmp
+CFLAGS=-O2 -fiopenmp -fsycl
 LDFLAGS=-lpng -lm
 
-all: steano
+all: stegano
 
 
-steano: main.o steano_routines.o io_routines.o
+stegano: main.o stegano_routines.o io_routines.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 clean:
-	rm -f steano *.o *.opt.yaml
+	rm -f stegano *.o *.opt.yaml
 
 
 .PHONY: clean all

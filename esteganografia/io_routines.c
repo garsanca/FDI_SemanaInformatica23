@@ -15,7 +15,7 @@ void get_msg(char *file_name, char **msg, int *msg_len)
 	uint8_t *im = (uint8_t*)stbi_load(file_name, &w, &h, &bytesPerPixel, STBI_rgb);
 	*msg_len = w*h/8;
 
-	char *msg_ = malloc((*msg_len)*sizeof(char));
+	char *msg_ = (char*)malloc((*msg_len)*sizeof(char));
 
 	int ib = 0;
 	int imsg = 0;
@@ -44,7 +44,7 @@ void get_msg(char *file_name, char **msg, int *msg_len)
 
 void msg2logo(char *file_name, char *msg_decoded, int msg_len)
 {
-	uint8_t *im  = malloc(3*8*msg_len*sizeof(uint8_t));
+	uint8_t *im  = (uint8_t*)malloc(3*8*msg_len*sizeof(uint8_t));
 
 	int logo_size = (int)roundf(sqrtf(8.0f*msg_len));
 

@@ -17,6 +17,52 @@
     * Puede descargarse fácilmente clonando el repositorio ejecutando en un terminal el comando ```git clone https://github.com/garsanca/FDI_SemanaInformatica23```
 * Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/) 
 
+## Laboratorios FDI
+* En los laboratorio está instalado el entorno de [oneAPI](https://www.oneapi.io/) para que pueda ser utilizado por los alumnos
+* Únicamente hay que tener en cuenta 3 cuestiones:
+     1. Está instalado en el sistema operativo **GNU-Linux**
+     2. El entorno (compiladores, herramientas y librerías) se activan cargando el script **setvars.sh**: ```source /opt/intel/oneapi/setvars.sh```. Es importante hacerlo cada vez que se abra una consola o terminal
+     3. Para que el compilador **dpcpp** o **icx** encuentre las cabeceras de C++ hay que exportar correctamente la variable de entorno **CPATH**: ```export CPATH=$CPATH:/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11```
+
+```bash
+user@host:~/ $ source /opt/intel/oneapi/setvars.sh 
+ 
+:: initializing oneAPI environment ...
+   bash: BASH_VERSION = 5.1.16(1)-release
+   args: Using "$@" for setvars.sh arguments: 
+:: advisor -- latest
+:: ccl -- latest
+:: clck -- latest
+:: compiler -- latest
+:: dal -- latest
+:: debugger -- latest
+:: dev-utilities -- latest
+:: dnnl -- latest
+:: dpcpp-ct -- latest
+:: dpl -- latest
+:: inspector -- latest
+:: intelpython -- latest
+:: ipp -- latest
+:: ippcp -- latest
+:: ipp -- latest
+:: itac -- latest
+:: mkl -- latest
+:: mpi -- latest
+:: tbb -- latest
+:: vpl -- latest
+:: vtune -- latest
+:: oneAPI environment initialized ::
+ 
+user@host:~/ $ export CPATH=$CPATH:/usr/include/c++/11:/usr/include/x86_64-linux-gnu/c++/11
+user@host:~/ $ sycl-ls 
+[opencl:0] ACC : Intel(R) FPGA Emulation Platform for OpenCL(TM) 1.2 [2021.13.11.0.23_160000]
+[opencl:0] CPU : Intel(R) OpenCL 3.0 [2021.13.11.0.23_160000]
+[opencl:0] GPU : Intel(R) OpenCL HD Graphics 3.0 [22.28.23726.1]
+[level_zero:0] GPU : Intel(R) Level-Zero 1.3 [1.3.23726]
+[host:0] HOST: SYCL host platform 1.2 [1.2]
+```
+
+
 ## Cuenta en DevCloud
 * El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) es un espacio de desarrollo **gratuito** para que la comunidad de desarrolladores puedan programar aplicaciones
     * Múltiples **hw**: 
@@ -70,7 +116,7 @@
 * El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) dispone de un sistema de colas para poder ejecutar las tareas
 * El lanzamiento de trabajo se realiza mediante [jobs](https://devcloud.intel.com/oneapi/documentation/job-submission/)
 * Existen dos formas de utilizar un nodo GPU: interactivo o trabajo tipo batch
-    * Para solicitar una sesión de forma interactiva con el comando qsub ```qsub -I -l nodes=1:gpu:ppn=2 -d ```
+    * Para solicitar una sesión de forma interactiva con el comando qsub ```qsub -I -l nodes=1:gpu:ppn=2 -d .```
         * ```-l nodes=1:gpu:ppn=2``` asigna un nodo completo con GPU
         * ```-d``` indica que la sesión abierta en el nodo se realiza en el mismo directorio que el lanzamiento de qsub
     * En un lanzamiento de tipo batch el trabajo se encola hasta que hay un slot disponible. La sintaxis es ```qsub -l nodes=1:gpu:ppn=2 -d . job.sh```
@@ -424,11 +470,11 @@ free(c, Q);
 ```bash
 user@host:~/ $ make
 icx -O2 -std=c99 -fiopenmp   -c -o main.o main.c
-icx -O2 -std=c99 -fiopenmp   -c -o steano_routines.o steano_routines.c
+icx -O2 -std=c99 -fiopenmp   -c -o stegano_routines.o stegano_routines.c
 icx -O2 -std=c99 -fiopenmp   -c -o io_routines.o io_routines.c
-icx -O2 -std=c99 -fiopenmp main.o steano_routines.o io_routines.o -o steano -lpng -lm
+icx -O2 -std=c99 -fiopenmp main.o stegano_routines.o io_routines.o -o stegano -lpng -lm
 
-user@host:~/ $ ./steano imgs/lenna.png imgs/logo_topsecret.png image.png
+user@host:~/ $ ./stegano imgs/lenna.png imgs/logo_topsecret.png image.png
 Encoding time=0.019842 sec.
 Decoding time=0.010709 sec.
 

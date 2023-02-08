@@ -523,4 +523,5 @@ void encoder(...)
 * El **concurso de programación** consiste en desarrollar la **codificación más eficiente** (código desarrollado más rápido) que implemente las funciones de ```encoder``` y ```decoder``` con el modelo de programación de SYCL
 
 ### Entrega
-* Los código desarrollados serán entragado en una tarea del [seminario ""]() disponible en el Campus Virtual
+* Los código desarrollados serán entragado en una tarea del [seminario "CONCURSO. Programación paralela con OneAPI"](https://cv4.ucm.es/moodle/course/view.php?id=145273) disponible en el Campus Virtual
+    * Los alumnos deberían de haberse inscrito en el taller para poder ser dados de alta en el seminario

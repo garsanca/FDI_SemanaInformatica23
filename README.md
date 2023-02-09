@@ -15,7 +15,7 @@
 ## Transparencias
 * Todo el material está disponible en el repositorio [github](https://github.com/garsanca/FDI_SemanaInformatica23)
     * Puede descargarse fácilmente clonando el repositorio ejecutando en un terminal el comando ```git clone https://github.com/garsanca/FDI_SemanaInformatica23```
-* Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/) 
+* Además las transparencias del taller están disponible en el [directorio "transparencias"](transparencias/transparenciasConcurso_oneAPI.pdf) 
 
 ## Laboratorios FDI
 * En los laboratorio está instalado el entorno de [oneAPI](https://www.oneapi.io/) para que pueda ser utilizado por los alumnos
@@ -64,7 +64,7 @@ user@host:~/ $ sycl-ls
 
 
 ## Cuenta en DevCloud
-* El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) es un espacio de desarrollo **gratuito** para que la comunidad de desarrolladores puedan programar aplicaciones
+* El [Intel® DevCloud for oneAPI](https://devcloud.intel.com/oneapi/) es un espacio de desarrollo **gratuito** para que la comunidad de desarrolladores puedan programar aplicaciones. Instrucciones para [solicitud de cuenta](transparencias/DevCloud_Setup_New_Users.pdf)
     * Múltiples **hw**: 
         * **CPUs**: desktop *i9-11900* y servidor tipo Xeon diferentes arquitecturas (Skylake,  Ice Lake, Sapphire Rapids)
         * **GPUs**: integradas UHD Intel® Core™ Gen9 y Gen11 
